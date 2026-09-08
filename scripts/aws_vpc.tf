@@ -35,7 +35,7 @@ resource "aws_internet_gateway" "igw" {
 }
 
 resource "aws_route_table" "aws_route_table_public" {
-  vpc_id = aws_vpc_main.id
+  vpc_id = aws_vpc.main.id
 
   route {
     cidr_block = "0.0.0.0/0"
@@ -48,7 +48,6 @@ resource "aws_route_table" "aws_route_table_public" {
 }
 
 resource "aws_route_table_association" "aws_rt_association_public" {
-  subnet_id = aws_subnet.aws_subnet_public
-  route_table_id = aws_route_table.aws_route_table_public
+  subnet_id = aws_subnet.aws_subnet_public.id
+  route_table_id = aws_route_table.aws_route_table_public.id
 }
-
